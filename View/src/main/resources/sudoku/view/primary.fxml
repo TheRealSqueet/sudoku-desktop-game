@@ -24,7 +24,7 @@
          AnchorPane.bottomAnchor="574.4" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
          AnchorPane.topAnchor="0.0">
          <menus>
-            <Menu fx:id="newGameMenu" mnemonicParsing="false" text="New Game">
+            <Menu fx:id="newGameMenu" mnemonicParsing="false" text="New EPIC Game">
                <items>
                   <MenuItem fx:id="easyNewGame" mnemonicParsing="false" onAction="#handleEasyGame"
                      text="Easy" />
