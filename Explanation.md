@@ -245,7 +245,9 @@ The heavy reliance on third party packages to do mission critical tasks like per
 
 updated constantly in order the the app to be maintainable by new developers with modern development environments. This is unavoidable in this context though as SQLite persistence needs communcation
 
-wrappers (JOOQ here) to be implemented, so I wouldn't consider that technical debt. Even though I had to make edits just to get the application working properly, there's nothing they could've done differently.
+wrappers (JOOQ here) to be implemented. Dependency version drift is common technical debt in legacy systems.
+
+Even though I had to make edits just to get the application working properly, there's nothing they could've done differently.
 
 There are a couple of code smells, like the tight coupling between the `BacktrackingSudokuSolver.java` class and the `SudokuBoard.java` class.
 
@@ -269,7 +271,7 @@ within a different class as it's not relevant to managing the state of the game,
 
 Open-Closed Violation:
 
-In the `DifficultyEnum.java` class the clearSudokuFieldsFromSudokuBoardBasedOnDifficulty(SudokuBoard sudokuBoard) function (wicked name btw) violates the open and closed principle with its long chain
+In the `DifficultyEnum.java` class the clearSudokuFieldsFromSudokuBoardBasedOnDifficulty(SudokuBoard sudokuBoard) function violates the open and closed principle with its long chain
 
 of a switch case to handle the logic of which number of spaces to clear based on the difficulty selected for the board.
 
