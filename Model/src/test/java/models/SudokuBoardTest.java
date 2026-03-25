@@ -258,4 +258,16 @@ public class SudokuBoardTest {
         assertFalse(sudokuBoard.equals(clonedBoard));
         assertNotEquals(sudokuBoard.hashCode(), clonedBoard.hashCode());
     }
+
+    @Test
+    void testSetFieldAllowsInvalidStateButDetectsIt() throws FillingBoardSudokuException {
+        SudokuBoard board = new SudokuBoard(new BacktrackingSudokuSolver());
+        board.solveGame();
+
+        int duplicateValue = board.getField(1, 0).getValue();
+        board.setField(0, 0, duplicateValue);
+
+        // Now the board SHOULD be invalid
+        assertFalse(board.isValidSudoku());
+    }
 }
