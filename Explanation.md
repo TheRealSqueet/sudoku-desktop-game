@@ -72,8 +72,6 @@ Here's what it looks like now.
 
 ## Architecture Exploration and Reflection
 
-  
-
 #### What is the Architectural Style?
 
 I see MVC here because:
@@ -112,8 +110,6 @@ This architecture makes maintenance easier as it's clearly separated and labeled
 
 I found in the `MainMenu.fxml` file it loaded a string with the % operator named `%START*GAME*` and I followed the property with that name in the search bar back to the `en_EN.properties` file which was easily accessible in the view folder as it should be as it serves front end facing information as per the MCV architecture. Unfamiliar to me it is still easy to maintain.
 
-  
-
 ## Testing and Build State
 
 #### Are there tests in the repository?
@@ -139,7 +135,7 @@ The tests are not runnable directly out of the gate, upon running `mvn test` I 
 
 the JdbcDao project fails and crashes the suite, this needs to be fixed for the suite to run
 
-####  They weren't, what does this suggest about maintainability and risk?
+#### They weren't, what does this suggest about maintainability and risk?
 
 The application needs to have its testing suite fixed in order to add new tests and run them with accurate output. Without being able to do this the application is at a high risk for bugs making their way into the production code.
 
@@ -147,7 +143,7 @@ This application will not be able to be properly maintained without correcting t
 
 #### What test I implemented and why:
 
-note: I fixed the JdbcDaoProject test failure by updating the `jooq-codegen-maven` dependency version to <version>3.20.11</version>. The test suite now runs cleanly
+note: I fixed the JdbcDaoProject test failure by updating the `jooq-codegen-maven` dependency version to 3.20.11. The test suite now runs cleanly
 
 In the `SudokuBoardTest.java` I added the test:
 
@@ -159,21 +155,15 @@ In the `SudokuBoardTest.java` I added the test:
 
         board.solveGame();
 
-  
-
         int duplicateValue = board.getField(1, 0).getValue();
 
         board.setField(0, 0, duplicateValue);
-
-  
 
         // now the board should be invalid
 
         assertFalse(board.isValidSudoku());
 
     }
-
-  
 
 this test shows that the sudoku board they have allows you to input invalid numbers (which would be numbers you can't place into a cell based on the rules of sudoku),
 
@@ -192,8 +182,6 @@ No true refactoring was required. I had to update the version of `jooq-codegen-m
 #### Where does my new test exist in the project structure?
 
 ModelsrctestjavamodelsSudokuBoardTest.java
-
-  
 
 ## Identifying a Maintenance Opportunity
 
@@ -228,8 +216,6 @@ This would be a fairly modular addition so not much would need to change around 
 This would not require a seam as it's a standalone function that's called upon by the help button and processed by the board.
 
 Potentially into the future you could have an assortment of help buttons that have difference functions and abstract the generalized parts into a help button interface, but not necessary here.
-
-  
 
 ## Overall Maintainability Assessment
 
@@ -267,8 +253,6 @@ But it also has the createTextField(SudokuField sudokuField, double textFieldPix
 
 within a different class as it's not relevant to managing the state of the game, but instead it's a helper for setting up display relevant object types.
 
-  
-
 Open-Closed Violation:
 
 In the `DifficultyEnum.java` class the clearSudokuFieldsFromSudokuBoardBasedOnDifficulty(SudokuBoard sudokuBoard) function violates the open and closed principle with its long chain
@@ -281,21 +265,15 @@ contained within the object. That way no switch statement is required, and the a
 
 changing any code in the clear function!
 
-  
-
 Liskov Substituion Principle Violation:
 
 All subclasses of classes I could find don't implement the superclasses functions in a way that would break functionality if you were to swap the subclass in for the superclass.
 
 The Save strategy classes are good examples of well done interface implementation. They both implement `SaveSudokuBoardStrategy` properly.
 
-  
-
 Interface Segragation Violation:
 
 I could not find any classes which were forced to implement methods they don't actually have.
-
-  
 
 Dependency Inversion Violation:
 
@@ -332,5 +310,3 @@ I would establish a solid naming convention across files to help differentiate b
 So this is a minor addition to what's already being done.
 
 Refactors cost quite a bit of time, money, and missed opportunity spent refining the system that's already there. This isn't bad enough to warrant a refactor.
-
-###
