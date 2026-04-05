@@ -1,4 +1,4 @@
-## Getting the System Running
+## 1 Getting the System Running
 
 #### Environment:
 
@@ -44,7 +44,7 @@ successful running of the application photo:
 
 ![successRun](successRun.png) 
 
-## Understanding the System
+## 2 Understanding the System
 
 #### What problem does it solve?
 
@@ -70,7 +70,7 @@ Here's what it looks like now.
 
 ![changedUIText](changedUIText.png) 
 
-## Architecture Exploration and Reflection
+## 3 Architecture Exploration and Reflection
 
 #### What is the Architectural Style?
 
@@ -110,7 +110,7 @@ This architecture makes maintenance easier as it's clearly separated and labeled
 
 I found in the `MainMenu.fxml` file it loaded a string with the % operator named `%START*GAME*` and I followed the property with that name in the search bar back to the `en_EN.properties` file which was easily accessible in the view folder as it should be as it serves front end facing information as per the MCV architecture. Unfamiliar to me it is still easy to maintain.
 
-## Testing and Build State
+## 4 Testing and Build State
 
 #### Are there tests in the repository?
 
@@ -183,7 +183,7 @@ No true refactoring was required. I had to update the version of `jooq-codegen-m
 
 ModelsrctestjavamodelsSudokuBoardTest.java
 
-## Identifying a Maintenance Opportunity
+## 5 Identifying a Maintenance Opportunity
 
 #### Potential new Feature
 
@@ -217,7 +217,7 @@ This would not require a seam as it's a standalone function that's called upon b
 
 Potentially into the future you could have an assortment of help buttons that have difference functions and abstract the generalized parts into a help button interface, but not necessary here.
 
-## Overall Maintainability Assessment
+## 6 Overall Maintainability Assessment
 
 #### Does the system appear actively maintained?
 
